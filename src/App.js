@@ -7,17 +7,22 @@ import Loading from "./components/Loading";
 import MessageBox from "./components/MessageBox";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
+import Events from "./pages/Events";
 
 import { useDispatch, useSelector } from "react-redux";
 import { selectAppLoading } from "./store/appState/selectors";
 import { getUserWithStoredToken } from "./store/user/actions";
 import HeroBanner from "./components/HeroBanner";
+import EventDetails from "./pages/EventDetails";
+import BusinessProfile from "./pages/BusinessProfile";
+import PostBeer from "./pages/PostBeer";
+import PostEvent from "./pages/PostEvent";
 
-const Home = () => (
-  <HeroBanner>
-    <h1>Home</h1>
-  </HeroBanner>
-);
+// const Home = () => (
+//   <HeroBanner>
+//     <h1>Home</h1>
+//   </HeroBanner>
+// );
 const Other = () => (
   <HeroBanner>
     <h1>Other</h1>
@@ -38,10 +43,14 @@ function App() {
       <MessageBox />
       {isLoading ? <Loading /> : null}
       <Routes>
-        <Route exact path="/" element={<Home />} />
+        <Route exact path="/" element={<Events />} />
         <Route path="/other" element={<Other />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/beer" element={<PostBeer />} />
+        <Route path="/postEvent" element={<PostEvent />} />
+        <Route path="/business/:id" element={<BusinessProfile />} />
+        <Route path="/event/:id" element={<EventDetails />} />
       </Routes>
     </div>
   );

@@ -2,14 +2,15 @@ import {
   APP_LOADING,
   APP_DONE_LOADING,
   SET_MESSAGE,
-  CLEAR_MESSAGE
+  CLEAR_MESSAGE,
 } from "./actions";
 
 const initialState = {
   loading: false,
-  message: null
+  message: null,
 };
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default (state = initialState, action) => {
   switch (action.type) {
     case APP_LOADING:

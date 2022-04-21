@@ -7,7 +7,6 @@ import {
   showMessageWithTimeout,
   setMessage,
 } from "../appState/actions";
-import { selectUser } from "../user/selectors";
 
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const TOKEN_STILL_VALID = "TOKEN_STILL_VALID";
@@ -37,14 +36,14 @@ export const signUp = (user, business) => {
         business,
       });
 
-      console.log("signup response", response.data);
+      // console.log("signup response", response.data);
 
       dispatch(loginSuccess(response.data));
       dispatch(showMessageWithTimeout("success", true, "account created"));
       dispatch(appDoneLoading());
     } catch (error) {
       if (error.response) {
-        console.log(error.response.data.message);
+        // console.log(error.response.data.message);
         dispatch(setMessage("danger", true, error.response.data.message));
       } else {
         console.log(error.message);
@@ -54,34 +53,6 @@ export const signUp = (user, business) => {
     }
   };
 };
-
-// export const signUp = (name, email, password, imageUrl, isBusiness) => {
-//   return async (dispatch, getState) => {
-//     dispatch(appLoading());
-//     try {
-//       const response = await axios.post(`${apiUrl}/auth/signup`, {
-//         name,
-//         email,
-//         password,
-//         imageUrl,
-//         isBusiness,
-//       });
-
-//       dispatch(loginSuccess(response.data));
-//       dispatch(showMessageWithTimeout("success", true, "account created"));
-//       dispatch(appDoneLoading());
-//     } catch (error) {
-//       if (error.response) {
-//         console.log(error.response.data.message);
-//         dispatch(setMessage("danger", true, error.response.data.message));
-//       } else {
-//         console.log(error.message);
-//         dispatch(setMessage("danger", true, error.message));
-//       }
-//       dispatch(appDoneLoading());
-//     }
-//   };
-// };
 
 export const login = (email, password) => {
   return async (dispatch, getState) => {
