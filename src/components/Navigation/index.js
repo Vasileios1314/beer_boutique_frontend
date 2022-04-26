@@ -7,20 +7,18 @@ import { selectToken, selectUser } from "../../store/user/selectors";
 import NavbarItem from "./NavbarItem";
 import LoggedIn from "./LoggedIn";
 import LoggedOut from "./LoggedOut";
-import { selectBusiness } from "../../store/eventDetails/selectors";
+// import { selectBusiness } from "../../store/eventDetails/selectors";
 import "./styles.css";
 
 export default function Navigation() {
   const token = useSelector(selectToken);
-  const isBusiness = useSelector(selectBusiness);
+  // const isBusiness = useSelector(selectBusiness);
   const user = useSelector(selectUser);
-
-  console.log("isBusiness", isBusiness.id);
 
   const loginLogoutControls = token ? <LoggedIn /> : <LoggedOut />;
 
   return (
-    <Navbar bg="dark" expand="light" variant="dark" fixed="top">
+    <Navbar bg="dark" expand="light" variant="dark">
       <Navbar.Brand as={NavLink} to="/">
         Beer Boutique
       </Navbar.Brand>
@@ -38,7 +36,7 @@ export default function Navigation() {
             <NavbarItem path="/postEvent" linkText="Post an Event" />
           ) : null}
           {token && !user.isBusiness ? (
-            <NavbarItem path="/noBusiness" linkText="My Profile" />
+            <NavbarItem path="/customer/profile" linkText="My Profile" />
           ) : null}
           {loginLogoutControls}
         </Nav>

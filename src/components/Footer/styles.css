@@ -1,0 +1,27 @@
+.footerContainer {
+  /* full width */
+  width: 100%;
+  /* Fixed height */
+  height: 180px;
+  background-color: #212529;
+  /* flex box */
+  display: flex;
+  justify-content: space-between;
+
+  color: #8a8fb9;
+}
+
+.footerIcons {
+  display: flex;
+}
+
+.f-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style-type: none;
+}
+
+ul.f-icons > li {
+  margin-left: 16px;
+}

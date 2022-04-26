@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+
+html {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(to right, #304352, #d7d2cc);
+}
+
+.container {
+  margin: 0;
+  font-family: Nunito, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 25px;
+}
+
+.col {
+  margin: 25px;
+  display: flex;
+}
+
+.card {
+  box-shadow: 2px 2px 20px 10px rgba(0, 0, 0, 0.2);
+  background-color: #d7d2cc;
+  border-radius: 5px;
+  margin-top: 5px;
+  border: none;
+}
+
+a:link {
+  text-decoration: none;
+}

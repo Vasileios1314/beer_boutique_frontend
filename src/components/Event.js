@@ -2,6 +2,7 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 import React from "react";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import "../pages/Events/styles.css";
 
 export default function Event(props) {
   const {
@@ -16,9 +17,9 @@ export default function Event(props) {
     // createdAt,
   } = props;
   return (
-    <Container>
+    <Container className="container">
       <Row>
-        <Col className="m-3">
+        <Col className="col">
           <Card style={{ width: "20rem" }} className="text-center">
             <Card.Img variant="top" src={imageUrl} />
             <Card.Body>
