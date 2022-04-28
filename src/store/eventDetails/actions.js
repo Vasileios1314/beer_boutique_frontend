@@ -33,6 +33,11 @@ export const postRating = (rating) => ({
   payload: rating,
 });
 
+export const deleteEvent = (deleteEvent) => ({
+  type: "DELETE_EVENT",
+  payload: deleteEvent,
+});
+
 export const eventById = (id) => {
   return async (dispatch, getState) => {
     try {
@@ -181,27 +186,23 @@ export const commentPost = (beerId, comment) => {
   };
 };
 
-export const ratingPost = (beerId, rating) => {
+export const eventDelete = (eventId) => {
   return async (dispatch, getState) => {
     try {
-      const { token } = selectUser(getState());
+      const { token, id: ID } = selectUser(getState());
 
-      const response = await axios.post(
-        `${apiUrl}/business/rating/${beerId}`,
-        {
-          rating,
-        },
+      const response = await axios.delete(
+        `${apiUrl}/business/deleteevent/${eventId}`,
+        { id: eventId },
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         }
       );
-
-      dispatch(
-        showMessageWithTimeout("success", false, response.data.message, 3000)
-      );
-      dispatch(postRating(response.data));
+      dispatch(showMessageWithTimeout("success", false, "Deleted", 3000));
+      dispatch(deleteEvent(response.data));
+      dispatch(fetchBusinessById(ID)); //this fetched the profile info again, so we don't have to update the reducer
     } catch (e) {
       console.log(e.message);
     }

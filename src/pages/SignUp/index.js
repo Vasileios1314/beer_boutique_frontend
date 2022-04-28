@@ -61,6 +61,7 @@ export default function SignUp() {
           <Form.Label>Name</Form.Label>
           <Form.Control
             value={name}
+            style={{ borderRadius: 100 }}
             onChange={(event) => setName(event.target.value)}
             type="text"
             placeholder="Enter name"
@@ -71,6 +72,7 @@ export default function SignUp() {
           <Form.Label>Email address</Form.Label>
           <Form.Control
             value={email}
+            style={{ borderRadius: 100 }}
             onChange={(event) => setEmail(event.target.value)}
             type="email"
             placeholder="Enter email"
@@ -85,6 +87,7 @@ export default function SignUp() {
           <Form.Label>Image</Form.Label>
           <Form.Control
             value={imageUrl}
+            style={{ borderRadius: 100 }}
             onChange={(event) => setImageUrl(event.target.value)}
             type="text"
             placeholder="Image URL"
@@ -96,6 +99,7 @@ export default function SignUp() {
           <Form.Label>Password</Form.Label>
           <Form.Control
             value={password}
+            style={{ borderRadius: 100 }}
             onChange={(event) => setPassword(event.target.value)}
             type="password"
             placeholder="Password"
@@ -106,6 +110,7 @@ export default function SignUp() {
           <Form.Label>Are you a Business?</Form.Label>
           <Form.Control
             value={isBusiness}
+            style={{ borderRadius: 100 }}
             onChange={(event) => setIsBusiness(!isBusiness)}
             type="checkbox"
             className="form-check-input"
@@ -118,6 +123,7 @@ export default function SignUp() {
                 <Form.Label>Business Name</Form.Label>
                 <Form.Control
                   value={title}
+                  style={{ borderRadius: 100 }}
                   onChange={(event) => setTitle(event.target.value)}
                   type="text"
                   placeholder="Enter name"
@@ -129,6 +135,7 @@ export default function SignUp() {
                 <Form.Label>Image</Form.Label>
                 <Form.Control
                   value={businessImageUrl}
+                  style={{ borderRadius: 100 }}
                   onChange={(event) => setBusinessImageUrl(event.target.value)}
                   type="text"
                   placeholder="Image URL"
@@ -140,6 +147,7 @@ export default function SignUp() {
                 <Form.Label>Description</Form.Label>
                 <Form.Control
                   value={description}
+                  style={{ borderRadius: 100 }}
                   onChange={(event) => setDescription(event.target.value)}
                   type="text"
                   placeholder="Enter description"
@@ -150,7 +158,12 @@ export default function SignUp() {
           )}
         </Form.Group>
         <Form.Group className="mt-5">
-          <Button variant="secondary" type="submit" onClick={submitForm}>
+          <Button
+            variant="secondary"
+            type="submit"
+            style={{ borderRadius: 100 }}
+            onClick={submitForm}
+          >
             Sign up
           </Button>
         </Form.Group>

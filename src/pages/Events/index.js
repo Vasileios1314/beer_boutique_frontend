@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Col, Container } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Event from "../../components/Event";
 import Loading from "../../components/Loading";
@@ -36,25 +36,36 @@ export default function Events() {
     );
 
   return (
-    <Container>
-      <Col md>
-        {events?.map((event) => {
-          return (
-            <Event
-              key={event.id}
-              id={event.id}
-              title={event.title}
-              description={event.description}
-              imageUrl={event.imageUrl}
-              start_date={event.start_date}
-              end_date={event.end_date}
-              capacity={event.capacity}
-              location={event.location}
-              createdAt={event.createdAt}
-            />
-          );
-        })}
-      </Col>
-    </Container>
+    <>
+      <div style={{ display: "flex", justifyContent: "center", marginTop: 20 }}>
+        <h2 style={{ color: "white" }}>Events</h2>
+      </div>
+      <Container>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+          }}
+        >
+          {events?.map((event) => {
+            return (
+              <Event
+                key={event.id}
+                id={event.id}
+                title={event.title}
+                description={event.description}
+                imageUrl={event.imageUrl}
+                start_date={event.start_date}
+                end_date={event.end_date}
+                capacity={event.capacity}
+                location={event.location}
+                createdAt={event.createdAt}
+              />
+            );
+          })}
+        </div>
+      </Container>
+    </>
   );
 }

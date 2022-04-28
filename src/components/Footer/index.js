@@ -1,6 +1,5 @@
 import React from "react";
 import { FiGithub, FiLinkedin } from "react-icons/fi";
-import { Link } from "react-router-dom";
 import "./styles.css";
 
 export default function Footer() {

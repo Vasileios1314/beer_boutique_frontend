@@ -39,6 +39,7 @@ export default function SignUp() {
           <Form.Label>Email address</Form.Label>
           <Form.Control
             value={email}
+            style={{ borderRadius: 100 }}
             onChange={(event) => setEmail(event.target.value)}
             type="email"
             placeholder="Enter email"
@@ -50,6 +51,7 @@ export default function SignUp() {
           <Form.Label>Password</Form.Label>
           <Form.Control
             value={password}
+            style={{ borderRadius: 100 }}
             onChange={(event) => setPassword(event.target.value)}
             type="password"
             placeholder="Password"
@@ -57,7 +59,12 @@ export default function SignUp() {
           />
         </Form.Group>
         <Form.Group className="mt-5">
-          <Button variant="secondary" type="submit" onClick={submitForm}>
+          <Button
+            variant="secondary"
+            type="submit"
+            style={{ borderRadius: 100 }}
+            onClick={submitForm}
+          >
             Log in
           </Button>
         </Form.Group>

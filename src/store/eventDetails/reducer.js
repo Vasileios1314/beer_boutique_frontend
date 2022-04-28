@@ -1,12 +1,4 @@
-const initialState = {
-  id: null,
-  title: "",
-  description: "",
-  imageUrl: "",
-  urerId: null,
-  events: [],
-  beers: [],
-};
+const initialState = [];
 
 export default function eventDetailsReducer(state = initialState, action) {
   switch (action.type) {
@@ -35,7 +27,9 @@ export default function eventDetailsReducer(state = initialState, action) {
         ...state,
         beers: updatedBeers,
       };
-    case "POST_RATING":
+    // case "POST_RATING":
+    //   return { ...state, ...action.payload };
+    case "DELETE_EVENT":
       return { ...state, ...action.payload };
     default:
       return state;

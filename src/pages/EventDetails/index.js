@@ -21,10 +21,8 @@ export default function EventDetails() {
     const day = date.getDate();
     const month = date.getMonth() + 1;
     const year = date.getFullYear();
-    const hour = date.getHours();
-    const minutes = date.getMinutes();
 
-    return `${day}/${month}/${year} ${hour}:${minutes}`;
+    return `${day}/${month}/${year}`;
   };
 
   if (!event.id) return <div>loading</div>;
@@ -33,16 +31,22 @@ export default function EventDetails() {
     <Container className="d-flex flex-column align-items-center">
       <div>
         <Card
-          style={{ width: "20rem", borderRadius: "10px" }}
+          style={{ width: "22rem", borderRadius: 100 }}
           className="text-center"
         >
-          <Card.Img variant="top" src={event?.business?.imageUrl} />
+          <Card.Img
+            variant="top"
+            src={event?.business?.imageUrl}
+            style={{ borderRadius: 100, minHeight: 320, maxHeight: 480 }}
+          />
           <Card.Body>
             <Card.Title>{event?.business?.title}</Card.Title>
             <Card.Text>{event?.business?.description}</Card.Text>
             <Card.Text></Card.Text>
-            <Link to={`/business/${id}`}>
-              <Button variant="secondary">Visit The Business</Button>
+            <Link to={`/business/${event?.businessId}`}>
+              <Button variant="secondary" style={{ borderRadius: 100 }}>
+                Visit The Business
+              </Button>
             </Link>
           </Card.Body>
         </Card>
@@ -51,24 +55,30 @@ export default function EventDetails() {
         <div>
           <Card
             style={{
-              width: "20rem",
-              borderRadius: "10px",
+              width: "18rem",
+              borderRadius: 100,
               boxShadow: "initial",
+              minHeight: 710,
             }}
             className="text-center"
           >
-            <Card.Img variant="bottom" src={event.imageUrl} />
+            <Card.Img
+              variant="bottom"
+              src={event.imageUrl}
+              style={{ borderRadius: 100, minHeight: 320, maxHeight: 480 }}
+            />
             <Card.Body>
               <Card.Title>{event.title}</Card.Title>
               <Card.Text>{event.description}</Card.Text>
               <Card.Text>Max capacity: {event.capacity}</Card.Text>
               <Card.Text>{event.location}</Card.Text>
-              <Card.Text>
-                Time: {formatDate(event.start_date)} till{" "}
-                {formatDate(event.end_date)}
-              </Card.Text>
+              <Card.Text>When: {formatDate(event.start_date)}</Card.Text>
               {/* <Button variant="secondary" onClick={submitAttend}> */}
-              <Button variant="secondary" onClick={() => dispatch(setAttend())}>
+              <Button
+                variant="secondary"
+                style={{ borderRadius: 100 }}
+                onClick={() => dispatch(setAttend())}
+              >
                 Subscribe
               </Button>
             </Card.Body>

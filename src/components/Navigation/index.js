@@ -9,11 +9,13 @@ import LoggedIn from "./LoggedIn";
 import LoggedOut from "./LoggedOut";
 // import { selectBusiness } from "../../store/eventDetails/selectors";
 import "./styles.css";
+import { selectEventDetails } from "../../store/eventDetails/selectors";
 
 export default function Navigation() {
   const token = useSelector(selectToken);
   // const isBusiness = useSelector(selectBusiness);
   const user = useSelector(selectUser);
+  const event = useSelector(selectEventDetails);
 
   const loginLogoutControls = token ? <LoggedIn /> : <LoggedOut />;
 
@@ -22,12 +24,18 @@ export default function Navigation() {
       <Navbar.Brand as={NavLink} to="/">
         Beer Boutique
       </Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Toggle
+        aria-controls="basic-navbar-nav"
+        style={{ borderRadius: 100 }}
+      />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav style={{ width: "100%" }} fill>
           <NavbarItem path="/" linkText="Events" />
           {token && user.isBusiness ? (
-            <NavbarItem path={`/business/${user.id}`} linkText="My Profile" />
+            <NavbarItem
+              path={`/business/${event.businessId}`}
+              linkText="My Profile"
+            />
           ) : null}
           {token && user.isBusiness ? (
             <NavbarItem path="/beer" linkText="Post a Beer" />

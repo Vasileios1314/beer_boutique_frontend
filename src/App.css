@@ -34,3 +34,20 @@ body {
 a:link {
   text-decoration: none;
 }
+
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 60px;
+  background: #304352;
+  color: #d7d2cc;
+  cursor: pointer;
+  border-radius: 100px;
+  border: none;
+  box-shadow: 0 5px 10px #ccc;
+}
+
+.back-to-top:hover {
+  background: #545e65;
+}

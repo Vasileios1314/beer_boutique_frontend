@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./App.css";
-
+import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import Loading from "./components/Loading";
@@ -27,6 +27,27 @@ function App() {
     dispatch(getUserWithStoredToken());
   }, [dispatch]);
 
+  // The back-to-top button is hidden at the beginning
+  const [showButton, setShowButton] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      if (window.pageYOffset > 300) {
+        setShowButton(true);
+      } else {
+        setShowButton(false);
+      }
+    });
+  }, []);
+
+  // This function will scroll the window to the top
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // for smoothly scrolling
+    });
+  };
+
   return (
     <div className="App">
       <Navigation />
@@ -42,6 +63,11 @@ function App() {
         <Route path="/business/:id" element={<BusinessProfile />} />
         <Route path="/event/:id" element={<EventDetails />} />
       </Routes>
+      {showButton && (
+        <button onClick={scrollToTop} className="back-to-top">
+          &#8679;
+        </button>
+      )}
       <Footer />
     </div>
   );

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectToken } from "../../store/user/selectors";
 import { selectBusiness } from "../../store/eventDetails/selectors";
 import { beerPost } from "../../store/eventDetails/actions";
-import { Button } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 
 export default function PostBeer() {
@@ -56,71 +56,86 @@ export default function PostBeer() {
   }
 
   return (
-    <Form>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Title</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="Title"
-          value={title}
-          onChange={(event) => setTitle(event.target.value)}
-        />
-      </Form.Group>
+    <Container>
+      <Form>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Title</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Title"
+            value={title}
+            style={{ borderRadius: 100 }}
+            onChange={(event) => setTitle(event.target.value)}
+          />
+        </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Description</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="Description"
-          value={description}
-          onChange={(event) => setDescription(event.target.value)}
-        />
-      </Form.Group>
-      <Form.Select
-        onChange={(e) => setCategory(e.target.value)}
-        aria-label="Default select example"
-      >
-        <option value="2">blonde</option>
-        <option value="3">red</option>
-        <option value="1">black</option>
-      </Form.Select>
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Country</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="Country"
-          value={country}
-          onChange={(event) => setCountry(event.target.value)}
-        />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Image Url</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="imageUrl"
-          value={imageUrl}
-          onChange={(event) => setImageUrl(event.target.value)}
-        />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Size</Form.Label>
-        <Form.Control
-          type="number"
-          value={size}
-          onChange={(event) => setSize(event.target.value)}
-        />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Alcohool Rate</Form.Label>
-        <Form.Control
-          type="number"
-          value={alcohoolRate}
-          onChange={(event) => setAlcohoolRate(event.target.value)}
-        />
-      </Form.Group>
-      <Button variant="primary" type="submit" onClick={submitForm}>
-        Submit
-      </Button>
-    </Form>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Description</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Description"
+            value={description}
+            style={{ borderRadius: 100 }}
+            onChange={(event) => setDescription(event.target.value)}
+          />
+        </Form.Group>
+        <Form.Label>Category</Form.Label>
+        <Form.Select
+          onChange={(e) => setCategory(e.target.value)}
+          style={{ borderRadius: 100 }}
+          aria-label="Default select example"
+        >
+          <option value="2">blonde</option>
+          <option value="3">red</option>
+          <option value="1">black</option>
+        </Form.Select>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Country</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Country"
+            value={country}
+            style={{ borderRadius: 100 }}
+            onChange={(event) => setCountry(event.target.value)}
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Image Url</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="imageUrl"
+            value={imageUrl}
+            style={{ borderRadius: 100 }}
+            onChange={(event) => setImageUrl(event.target.value)}
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Size</Form.Label>
+          <Form.Control
+            type="number"
+            value={size}
+            style={{ borderRadius: 100 }}
+            onChange={(event) => setSize(event.target.value)}
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Alcohool Rate</Form.Label>
+          <Form.Control
+            type="number"
+            value={alcohoolRate}
+            style={{ borderRadius: 100 }}
+            onChange={(event) => setAlcohoolRate(event.target.value)}
+          />
+        </Form.Group>
+        <Button
+          variant="primary"
+          style={{ borderRadius: 100 }}
+          type="submit"
+          onClick={submitForm}
+        >
+          Submit
+        </Button>
+      </Form>
+    </Container>
   );
 }
