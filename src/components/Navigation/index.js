@@ -33,7 +33,7 @@ export default function Navigation() {
           <NavbarItem path="/" linkText="Events" />
           {token && user.isBusiness ? (
             <NavbarItem
-              path={`/business/${event.businessId}`}
+              path={`/business/${event.business.id}`}
               linkText="My Profile"
             />
           ) : null}
