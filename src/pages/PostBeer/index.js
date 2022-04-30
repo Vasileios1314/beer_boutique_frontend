@@ -15,13 +15,20 @@ export default function PostBeer() {
   const [description, setDescription] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [category, setCategory] = useState("");
-  console.log("cat", category);
   const [size, setSize] = useState(0);
   const [country, setCountry] = useState("");
   const [alcohoolRate, setAlcohoolRate] = useState(0);
+  // const [titleErr, setTitleErr] = useState("err");
+  // const [descriptionErr, setDescriptionErr] = useState("err");
 
   function submitForm(event) {
     event.preventDefault();
+    // if ((title, description)) {
+    //   return setTitleErr("err");
+    // }
+    // if ((title, description)) {
+    //   return setDescriptionErr("err");
+    // }
     console.log(
       "beer",
       title,
@@ -67,6 +74,7 @@ export default function PostBeer() {
             style={{ borderRadius: 100 }}
             onChange={(event) => setTitle(event.target.value)}
           />
+          {/* {!title ? <div style={{ color: "red" }}>{titleErr}</div> : null} */}
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -78,6 +86,9 @@ export default function PostBeer() {
             style={{ borderRadius: 100 }}
             onChange={(event) => setDescription(event.target.value)}
           />
+          {/* {!description ? (
+            <div style={{ color: "red" }}>{descriptionErr}</div>
+          ) : null} */}
         </Form.Group>
         <Form.Label>Category</Form.Label>
         <Form.Select

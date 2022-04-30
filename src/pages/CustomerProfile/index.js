@@ -61,16 +61,18 @@ export default function CustomerProfile() {
 
       <Col className="m-3">
         <div>
-          <h3
-            style={{
-              color: "white",
-              display: "flex",
-              justifyContent: "center",
-              margin: 20,
-            }}
-          >
-            Subscribed Events
-          </h3>
+          {events?.length ? (
+            <h3
+              style={{
+                color: "white",
+                display: "flex",
+                justifyContent: "center",
+                margin: 20,
+              }}
+            >
+              Subscribed Events
+            </h3>
+          ) : null}
           <div
             style={{
               display: "flex",
@@ -85,6 +87,7 @@ export default function CustomerProfile() {
                         marginLeft: 20,
                         marginRight: 20,
                       }}
+                      key={event.id}
                     >
                       <Card
                         style={{

@@ -18,6 +18,7 @@ import PostBeer from "./pages/PostBeer";
 import PostEvent from "./pages/PostEvent";
 import CustomerProfile from "./pages/CustomerProfile";
 import Footer from "./components/Footer";
+import MyProfile from "./pages/myProfile";
 
 function App() {
   const dispatch = useDispatch();
@@ -62,6 +63,7 @@ function App() {
         <Route path="/customer/profile" element={<CustomerProfile />} />
         <Route path="/business/:id" element={<BusinessProfile />} />
         <Route path="/event/:id" element={<EventDetails />} />
+        <Route path="my-profile" element={<MyProfile />} />
       </Routes>
       {showButton && (
         <button onClick={scrollToTop} className="back-to-top">

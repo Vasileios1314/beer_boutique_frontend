@@ -1,6 +1,7 @@
 import axios from "axios";
 import { apiUrl } from "../../config/constants";
 import { showMessageWithTimeout } from "../appState/actions";
+import { getUserWithStoredToken } from "../user/actions";
 import { selectUser } from "../user/selectors";
 
 const setEventDetails = (event) => ({
@@ -71,7 +72,9 @@ export const beerPost = (
 ) => {
   return async (dispatch, getState) => {
     try {
+      console.log("in function");
       const { token } = selectUser(getState());
+      console.log("token", token);
 
       const response = await axios.post(
         `${apiUrl}/business/beer/`,
@@ -90,6 +93,9 @@ export const beerPost = (
           },
         }
       );
+      console.log("res", response.data);
+      if ((title, imageUrl, description, category, alcohoolRate, size, country))
+        return;
       dispatch(
         showMessageWithTimeout(
           "success",
@@ -99,6 +105,7 @@ export const beerPost = (
         )
       );
       dispatch(postBeer(response.data));
+      dispatch(getUserWithStoredToken());
     } catch (e) {
       console.log(e.message);
     }
@@ -144,6 +151,7 @@ export const eventPost = (
         )
       );
       dispatch(postEvent(response.data));
+      dispatch(getUserWithStoredToken());
     } catch (e) {
       console.log(e.message);
     }
@@ -180,6 +188,7 @@ export const commentPost = (beerId, comment) => {
           comment: response.data,
         })
       );
+      dispatch(fetchBusinessById());
     } catch (e) {
       console.log(e.message);
     }
@@ -187,6 +196,7 @@ export const commentPost = (beerId, comment) => {
 };
 
 export const eventDelete = (eventId) => {
+  console.log("eventId", eventId);
   return async (dispatch, getState) => {
     try {
       const { token, id: ID } = selectUser(getState());
@@ -202,7 +212,7 @@ export const eventDelete = (eventId) => {
       );
       dispatch(showMessageWithTimeout("success", false, "Deleted", 3000));
       dispatch(deleteEvent(response.data));
-      dispatch(fetchBusinessById(ID)); //this fetched the profile info again, so we don't have to update the reducer
+      dispatch(getUserWithStoredToken(ID)); //this fetched the profile info again, so we don't have to update the reducer
     } catch (e) {
       console.log(e.message);
     }

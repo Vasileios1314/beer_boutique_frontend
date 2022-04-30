@@ -6,11 +6,14 @@ import { Link, useParams } from "react-router-dom";
 import { eventById } from "../../store/eventDetails/actions";
 import { selectEventDetails } from "../../store/eventDetails/selectors";
 import { setAttend } from "../../store/events/actions";
+import { selectToken, selectUser } from "../../store/user/selectors";
 
 export default function EventDetails() {
   const { id } = useParams();
   const event = useSelector(selectEventDetails);
   const dispatch = useDispatch();
+  const token = useSelector(selectToken);
+  const user = useSelector(selectUser);
 
   useEffect(() => {
     dispatch(eventById(id));
@@ -74,13 +77,15 @@ export default function EventDetails() {
               <Card.Text>{event.location}</Card.Text>
               <Card.Text>When: {formatDate(event.start_date)}</Card.Text>
               {/* <Button variant="secondary" onClick={submitAttend}> */}
-              <Button
-                variant="secondary"
-                style={{ borderRadius: 100 }}
-                onClick={() => dispatch(setAttend())}
-              >
-                Subscribe
-              </Button>
+              {token && !user.isBusiness && (
+                <Button
+                  variant="secondary"
+                  style={{ borderRadius: 100 }}
+                  onClick={() => dispatch(setAttend())}
+                >
+                  Subscribe
+                </Button>
+              )}
             </Card.Body>
           </Card>
         </div>

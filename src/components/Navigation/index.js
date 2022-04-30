@@ -9,13 +9,11 @@ import LoggedIn from "./LoggedIn";
 import LoggedOut from "./LoggedOut";
 // import { selectBusiness } from "../../store/eventDetails/selectors";
 import "./styles.css";
-import { selectEventDetails } from "../../store/eventDetails/selectors";
 
 export default function Navigation() {
   const token = useSelector(selectToken);
   // const isBusiness = useSelector(selectBusiness);
   const user = useSelector(selectUser);
-  const event = useSelector(selectEventDetails);
 
   const loginLogoutControls = token ? <LoggedIn /> : <LoggedOut />;
 
@@ -31,12 +29,9 @@ export default function Navigation() {
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav style={{ width: "100%" }} fill>
           <NavbarItem path="/" linkText="Events" />
-          {token && user.isBusiness ? (
-            <NavbarItem
-              path={`/business/${event.business.id}`}
-              linkText="My Profile"
-            />
-          ) : null}
+          {token && user.isBusiness && (
+            <NavbarItem path={`/my-profile`} linkText="My Profile" />
+          )}
           {token && user.isBusiness ? (
             <NavbarItem path="/beer" linkText="Post a Beer" />
           ) : null}

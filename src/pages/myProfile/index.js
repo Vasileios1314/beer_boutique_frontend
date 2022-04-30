@@ -1,27 +1,22 @@
 import { Button, Col, Container } from "react-bootstrap";
-import React, { useEffect } from "react";
+import React from "react";
 import { Card } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
-import {
-  eventDelete,
-  fetchBusinessById,
-} from "../../store/eventDetails/actions";
-import { selectBusiness } from "../../store/eventDetails/selectors";
+import { eventDelete } from "../../store/eventDetails/actions";
 import { setAttend } from "../../store/events/actions";
-import { selectToken, selectUser } from "../../store/user/selectors";
+import {
+  selectToken,
+  selectUser,
+  selectUserBusiness,
+} from "../../store/user/selectors";
 import BeerCard from "../../components/BeerCard";
 
-export default function BusinessProfile() {
-  const { id } = useParams();
-  const business = useSelector(selectBusiness);
+export default function MyProfile() {
   const token = useSelector(selectToken);
   const user = useSelector(selectUser);
-  const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchBusinessById(id));
-  }, [dispatch, id]);
+  const business = useSelector(selectUserBusiness);
+  const dispatch = useDispatch();
 
   const formatDate = (dateStr) => {
     const date = new Date(dateStr);
@@ -32,10 +27,12 @@ export default function BusinessProfile() {
     return `${day}-${month}-${year}`;
   };
 
-  if (!business.id) return <div>loading</div>;
+  console.log(business);
+
+  if (!business) return <div>loading</div>;
 
   return (
-    <Container style={{ flexDirection: "column" }} key={business.id}>
+    <Container style={{ flexDirection: "column" }}>
       <div>
         <h2
           style={{
@@ -104,7 +101,7 @@ export default function BusinessProfile() {
                 )}
                 <br />
                 <br />
-                {token && user.isBusiness === user.id ? (
+                {token && (
                   <Button
                     variant="secondary"
                     style={{ borderRadius: 100 }}
@@ -112,7 +109,7 @@ export default function BusinessProfile() {
                   >
                     Delete Event
                   </Button>
-                ) : null}
+                )}
               </Card.Body>
             </Card>
           );

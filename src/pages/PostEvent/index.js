@@ -14,9 +14,9 @@ export default function PostEvent() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [imageUrl, setImageUrl] = useState("");
-  const [start, setStart] = useState();
-  const [end, setEnd] = useState();
-  const [capacity, setCapacity] = useState();
+  const [start, setStart] = useState("");
+  const [end, setEnd] = useState("");
+  const [capacity, setCapacity] = useState(0);
   const [location, setLocation] = useState("");
 
   function submitForm(event) {
@@ -70,7 +70,7 @@ export default function PostEvent() {
             onChange={(event) => setDescription(event.target.value)}
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Group className="mb-3" controlId="formBasicCapacity">
           <Form.Label>Capacity</Form.Label>
           <Form.Control
             type="number"
