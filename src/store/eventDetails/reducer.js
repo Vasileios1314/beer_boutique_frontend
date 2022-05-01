@@ -31,6 +31,10 @@ export default function eventDetailsReducer(state = initialState, action) {
     //   return { ...state, ...action.payload };
     case "DELETE_EVENT":
       return { ...state, ...action.payload };
+    case "LIKES_UPDATED":
+      return { ...state, ...action.payload };
+    case "DELETE_BEER":
+      return { ...state, ...action.payload };
     default:
       return state;
   }

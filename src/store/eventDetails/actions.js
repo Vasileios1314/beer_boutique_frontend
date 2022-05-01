@@ -38,6 +38,15 @@ export const deleteEvent = (deleteEvent) => ({
   type: "DELETE_EVENT",
   payload: deleteEvent,
 });
+export const updatedLikes = (likes) => ({
+  type: "LIKES_UPDATED",
+  payload: likes,
+});
+
+export const deleteBeer = (deleteBeer) => ({
+  type: "DELETE_BEER",
+  payload: deleteBeer,
+});
 
 export const eventById = (id) => {
   return async (dispatch, getState) => {
@@ -72,9 +81,7 @@ export const beerPost = (
 ) => {
   return async (dispatch, getState) => {
     try {
-      console.log("in function");
       const { token } = selectUser(getState());
-      console.log("token", token);
 
       const response = await axios.post(
         `${apiUrl}/business/beer/`,
@@ -93,7 +100,6 @@ export const beerPost = (
           },
         }
       );
-      console.log("res", response.data);
       if ((title, imageUrl, description, category, alcohoolRate, size, country))
         return;
       dispatch(
@@ -178,10 +184,7 @@ export const commentPost = (beerId, comment) => {
       dispatch(
         showMessageWithTimeout("success", false, response.data.message, 3000)
       );
-      // console.log("dispatch", {
-      //   beerId,
-      //   comment: response.data,
-      // });
+
       dispatch(
         postComment({
           beerId,
@@ -196,7 +199,6 @@ export const commentPost = (beerId, comment) => {
 };
 
 export const eventDelete = (eventId) => {
-  console.log("eventId", eventId);
   return async (dispatch, getState) => {
     try {
       const { token, id: ID } = selectUser(getState());
@@ -213,6 +215,50 @@ export const eventDelete = (eventId) => {
       dispatch(showMessageWithTimeout("success", false, "Deleted", 3000));
       dispatch(deleteEvent(response.data));
       dispatch(getUserWithStoredToken(ID)); //this fetched the profile info again, so we don't have to update the reducer
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+};
+
+export const likesUpdated = (likes, id) => {
+  return async (dispatch, getState) => {
+    try {
+      const { token, id: ID } = selectUser(getState());
+
+      console.log("likes", likes, id);
+      const response = await axios.patch(
+        `${apiUrl}/business/beer/${id}`,
+        {
+          likes: likes + 1,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      dispatch(showMessageWithTimeout("success", false, "Like", 3000));
+      dispatch(updatedLikes(response.data));
+      dispatch(getUserWithStoredToken(ID));
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+};
+
+export const beerDelete = (beerId) => {
+  return async (dispatch, getState) => {
+    try {
+      const { id: ID } = selectUser(getState());
+
+      const response = await axios.delete(
+        `${apiUrl}/business/deletebeer/${beerId}`,
+        { id: beerId }
+      );
+      dispatch(showMessageWithTimeout("success", false, "Deleted", 3000));
+      dispatch(deleteEvent(response.data));
+      dispatch(getUserWithStoredToken(ID));
     } catch (e) {
       console.log(e.message);
     }

@@ -62,7 +62,9 @@ export default function SignUp() {
           <Button
             variant="secondary"
             type="submit"
-            style={{ borderRadius: 100 }}
+            style={{
+              borderRadius: 100,
+            }}
             onClick={submitForm}
           >
             Log in

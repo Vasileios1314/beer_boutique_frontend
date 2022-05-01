@@ -2,13 +2,12 @@ import { Button, Col, Container } from "react-bootstrap";
 import React, { useEffect } from "react";
 import { Card } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
   eventDelete,
   fetchBusinessById,
 } from "../../store/eventDetails/actions";
 import { selectBusiness } from "../../store/eventDetails/selectors";
-import { setAttend } from "../../store/events/actions";
 import { selectToken, selectUser } from "../../store/user/selectors";
 import BeerCard from "../../components/BeerCard";
 
@@ -28,8 +27,10 @@ export default function BusinessProfile() {
     const day = date.getDate();
     const month = date.getMonth() + 1;
     const year = date.getFullYear();
+    const hour = date.getHours();
+    const min = date.getMinutes();
 
-    return `${day}-${month}-${year}`;
+    return `${day}/${month}/${year} ${hour}:${min}`;
   };
 
   if (!business.id) return <div>loading</div>;
@@ -94,13 +95,11 @@ export default function BusinessProfile() {
                   {formatDate(event.end_date)}
                 </Card.Text>
                 {token && !user.isBusiness && (
-                  <Button
-                    variant="secondary"
-                    style={{ borderRadius: 100 }}
-                    onClick={() => dispatch(setAttend())}
-                  >
-                    Subscribe
-                  </Button>
+                  <Link to={`/event/${event.id}`}>
+                    <Button variant="secondary" style={{ borderRadius: 100 }}>
+                      Read More
+                    </Button>
+                  </Link>
                 )}
                 <br />
                 <br />

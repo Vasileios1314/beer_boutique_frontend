@@ -1,18 +1,18 @@
 import { useState } from "react";
 import { Card, Button, Form, ListGroup } from "react-bootstrap";
-import { commentPost } from "../store/eventDetails/actions";
+import { commentPost, likesUpdated } from "../store/eventDetails/actions";
 import { useDispatch, useSelector } from "react-redux";
-import { selectToken } from "../store/user/selectors";
+import { selectToken, selectUser } from "../store/user/selectors";
 
 export default function BeerCard(props) {
   const [comment, setComment] = useState("");
   const beer = props.beer;
   const token = useSelector(selectToken);
+
   const dispatch = useDispatch();
 
   function submitComment(event, id) {
     event.preventDefault();
-    console.log("submit", id, comment);
     dispatch(commentPost(id, comment));
     setComment("");
   }
@@ -35,11 +35,23 @@ export default function BeerCard(props) {
         <Card.Text>Country: {beer.country}</Card.Text>
         <Card.Text>Size: {beer.size} ml</Card.Text>
         <Card.Text>Alcohol: {beer.alcohoolRate}%</Card.Text>
-
+        <Card.Text>Likes: {beer.likes}</Card.Text>
+        {token && (
+          <Button
+            variant="secondary"
+            style={{ borderRadius: 100 }}
+            onClick={() => dispatch(likesUpdated(beer.likes, beer.id))}
+          >
+            Like
+          </Button>
+        )}
         <Card.Header style={{ borderRadius: 100 }}>Comments</Card.Header>
         {beer?.comments?.map((comment) => {
           return (
-            <ListGroup key={comment.id} style={{ marginTop: "10px" }}>
+            <ListGroup
+              key={comment.id}
+              style={{ marginTop: "10px", borderRadius: 100 }}
+            >
               <ListGroup.Item>{comment.comment}</ListGroup.Item>
             </ListGroup>
           );

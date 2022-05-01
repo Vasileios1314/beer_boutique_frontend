@@ -76,6 +76,7 @@ export default function PostEvent() {
             type="number"
             placeholder="capacity"
             value={capacity}
+            min="0"
             style={{ borderRadius: 100 }}
             onChange={(event) => setCapacity(event.target.value)}
           />
@@ -83,8 +84,9 @@ export default function PostEvent() {
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Start</Form.Label>
           <Form.Control
-            type="date"
+            type="datetime-local"
             placeholder="Start"
+            min={new Date()}
             value={start}
             style={{ borderRadius: 100 }}
             onChange={(event) => setStart(event.target.value)}
@@ -93,9 +95,10 @@ export default function PostEvent() {
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>End</Form.Label>
           <Form.Control
-            type="date"
+            type="datetime-local"
             placeholder="End"
             value={end}
+            min={new Date()}
             style={{ borderRadius: 100 }}
             onChange={(event) => setEnd(event.target.value)}
           />

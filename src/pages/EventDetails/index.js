@@ -24,8 +24,10 @@ export default function EventDetails() {
     const day = date.getDate();
     const month = date.getMonth() + 1;
     const year = date.getFullYear();
+    const hour = date.getHours();
+    const min = date.getMinutes();
 
-    return `${day}/${month}/${year}`;
+    return `${day}/${month}/${year} ${hour}:${min}`;
   };
 
   if (!event.id) return <div>loading</div>;
@@ -40,7 +42,11 @@ export default function EventDetails() {
           <Card.Img
             variant="top"
             src={event?.business?.imageUrl}
-            style={{ borderRadius: 100, minHeight: 320, maxHeight: 480 }}
+            style={{
+              borderRadius: 100,
+              minHeight: 320,
+              maxHeight: 480,
+            }}
           />
           <Card.Body>
             <Card.Title>{event?.business?.title}</Card.Title>
@@ -75,7 +81,13 @@ export default function EventDetails() {
               <Card.Text>{event.description}</Card.Text>
               <Card.Text>Max capacity: {event.capacity}</Card.Text>
               <Card.Text>{event.location}</Card.Text>
-              <Card.Text>When: {formatDate(event.start_date)}</Card.Text>
+              <Card.Text>
+                When: {formatDate(event.start_date)}
+                <br />
+                until
+                <br />
+                {formatDate(event.end_date)}
+              </Card.Text>
               {/* <Button variant="secondary" onClick={submitAttend}> */}
               {token && !user.isBusiness && (
                 <Button

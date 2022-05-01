@@ -18,27 +18,10 @@ export default function PostBeer() {
   const [size, setSize] = useState(0);
   const [country, setCountry] = useState("");
   const [alcohoolRate, setAlcohoolRate] = useState(0);
-  // const [titleErr, setTitleErr] = useState("err");
-  // const [descriptionErr, setDescriptionErr] = useState("err");
 
   function submitForm(event) {
     event.preventDefault();
-    // if ((title, description)) {
-    //   return setTitleErr("err");
-    // }
-    // if ((title, description)) {
-    //   return setDescriptionErr("err");
-    // }
-    console.log(
-      "beer",
-      title,
-      imageUrl,
-      description,
-      category,
-      size,
-      country,
-      alcohoolRate
-    );
+
     dispatch(
       beerPost(
         title,
@@ -85,6 +68,7 @@ export default function PostBeer() {
             value={description}
             style={{ borderRadius: 100 }}
             onChange={(event) => setDescription(event.target.value)}
+            required
           />
           {/* {!description ? (
             <div style={{ color: "red" }}>{descriptionErr}</div>
@@ -94,7 +78,7 @@ export default function PostBeer() {
         <Form.Select
           onChange={(e) => setCategory(e.target.value)}
           style={{ borderRadius: 100 }}
-          aria-label="Default select example"
+          required
         >
           <option value="2">blonde</option>
           <option value="3">red</option>
@@ -108,6 +92,7 @@ export default function PostBeer() {
             value={country}
             style={{ borderRadius: 100 }}
             onChange={(event) => setCountry(event.target.value)}
+            required
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -118,6 +103,7 @@ export default function PostBeer() {
             value={imageUrl}
             style={{ borderRadius: 100 }}
             onChange={(event) => setImageUrl(event.target.value)}
+            required
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -125,8 +111,10 @@ export default function PostBeer() {
           <Form.Control
             type="number"
             value={size}
+            min="0"
             style={{ borderRadius: 100 }}
             onChange={(event) => setSize(event.target.value)}
+            required
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -134,10 +122,13 @@ export default function PostBeer() {
           <Form.Control
             type="number"
             value={alcohoolRate}
+            min="0"
             style={{ borderRadius: 100 }}
             onChange={(event) => setAlcohoolRate(event.target.value)}
+            required
           />
         </Form.Group>
+
         <Button
           variant="primary"
           style={{ borderRadius: 100 }}

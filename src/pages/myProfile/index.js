@@ -2,7 +2,7 @@ import { Button, Col, Container } from "react-bootstrap";
 import React from "react";
 import { Card } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
-import { eventDelete } from "../../store/eventDetails/actions";
+import { beerDelete, eventDelete } from "../../store/eventDetails/actions";
 import { setAttend } from "../../store/events/actions";
 import {
   selectToken,
@@ -23,11 +23,11 @@ export default function MyProfile() {
     const day = date.getDate();
     const month = date.getMonth() + 1;
     const year = date.getFullYear();
+    const hour = date.getHours();
+    const min = date.getMinutes();
 
-    return `${day}-${month}-${year}`;
+    return `${day}/${month}/${year} ${hour}:${min}`;
   };
-
-  console.log(business);
 
   if (!business) return <div>loading</div>;
 
@@ -47,16 +47,16 @@ export default function MyProfile() {
         <Card
           style={{ width: "22rem", borderRadius: 100, minHeight: 320 }}
           className="text-center"
-          key={business.id}
+          key={business?.id}
         >
           <Card.Img
             variant="top"
-            src={business.imageUrl}
+            src={business?.imageUrl}
             style={{ borderRadius: 100, minHeight: 320, maxHeight: 480 }}
           />
           <Card.Body>
-            <Card.Title>{business.title}</Card.Title>
-            <Card.Text>{business.description}</Card.Text>
+            <Card.Title>{business?.title}</Card.Title>
+            <Card.Text>{business?.description}</Card.Text>
           </Card.Body>
         </Card>
       </div>
@@ -103,7 +103,7 @@ export default function MyProfile() {
                 <br />
                 {token && (
                   <Button
-                    variant="secondary"
+                    variant="danger"
                     style={{ borderRadius: 100 }}
                     onClick={() => dispatch(eventDelete(event.id))}
                   >
@@ -124,6 +124,17 @@ export default function MyProfile() {
             return (
               <div style={{ marginLeft: 20, marginRight: 20 }} key={beer.id}>
                 <BeerCard beer={beer} />
+                {token &&
+                user.isBusiness &&
+                user.business.userId === user.id ? (
+                  <Button
+                    variant="danger"
+                    style={{ borderRadius: 100, marginLeft: 88, marginTop: 5 }}
+                    onClick={() => dispatch(beerDelete(beer.id))}
+                  >
+                    Delete Beer
+                  </Button>
+                ) : null}
               </div>
             );
           })}

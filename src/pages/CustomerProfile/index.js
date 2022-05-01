@@ -24,8 +24,10 @@ export default function CustomerProfile() {
     const day = date.getDate();
     const month = date.getMonth() + 1;
     const year = date.getFullYear();
+    const hour = date.getHours();
+    const min = date.getMinutes();
 
-    return `${day}-${month}-${year}`;
+    return `${day}/${month}/${year} ${hour}:${min}`;
   };
 
   if (!events || !user) return <div>loading</div>;
