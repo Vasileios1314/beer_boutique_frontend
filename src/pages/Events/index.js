@@ -37,8 +37,24 @@ export default function Events() {
 
   return (
     <>
-      <div style={{ display: "flex", justifyContent: "center", marginTop: 20 }}>
-        <h2 style={{ color: "white" }}>Events</h2>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          marginTop: 40,
+          alignItems: "center",
+        }}
+      >
+        <img
+          alt=""
+          style={{ borderRadius: "10px", marginBottom: "20px" }}
+          draggable="true"
+          src="https://pbs.twimg.com/profile_banners/1179868454360420357/1570219596/600x200"
+        />
+        <h2 style={{ color: "white", fontSize: "50px", color: "#feb600" }}>
+          Welcome to Beer Boutique
+        </h2>
       </div>
       <Container>
         <div

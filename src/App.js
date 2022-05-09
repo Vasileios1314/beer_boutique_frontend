@@ -19,6 +19,7 @@ import PostEvent from "./pages/PostEvent";
 import CustomerProfile from "./pages/CustomerProfile";
 import Footer from "./components/Footer";
 import MyProfile from "./pages/myProfile";
+import AllBusinessPage from "./pages/AllBusinessPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -56,6 +57,7 @@ function App() {
       {isLoading ? <Loading /> : null}
       <Routes>
         <Route exact path="/" element={<Events />} />
+        <Route path="/business" element={<AllBusinessPage />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/beer" element={<PostBeer />} />

@@ -36,23 +36,32 @@ export default function MyProfile() {
       <div>
         <h2
           style={{
-            color: "white",
-            display: "flex",
-            justifyContent: "center",
-            marginTop: 20,
+            padding: "10px",
+            fontSize: "40px",
+            color: "#feb600",
+            fontWeight: "900",
+            border: "2px solid #feb600",
+            borderRadius: 10,
+            textAlign: "center",
           }}
         >
           Business Profile
         </h2>
+
         <Card
-          style={{ width: "22rem", borderRadius: 100, minHeight: 320 }}
+          style={{
+            padding: "20px",
+            width: "100%",
+            borderRadius: "10px",
+            background: "#feb600",
+          }}
           className="text-center"
           key={business?.id}
         >
           <Card.Img
             variant="top"
             src={business?.imageUrl}
-            style={{ borderRadius: 100, minHeight: 320, maxHeight: 480 }}
+            style={{ borderRadius: "10px", minHeight: 320, maxHeight: 480 }}
           />
           <Card.Body>
             <Card.Title>{business?.title}</Card.Title>
@@ -60,21 +69,53 @@ export default function MyProfile() {
           </Card.Body>
         </Card>
       </div>
-      <div>
-        {business?.events?.length ? (
-          <h3 style={{ color: "white", marginTop: 20 }}>Events</h3>
-        ) : null}
+      <hr
+        style={{
+          color: "#fff",
+          height: "2px",
+          marginTop: "35px",
+          width: "100%",
+        }}
+      />
+      {business?.events?.length ? (
+        <h3
+          style={{
+            padding: "20px 10px",
+            fontSize: "30px",
+            color: "#feb600",
+            fontWeight: "400",
+          }}
+        >
+          Events
+        </h3>
+      ) : null}
+
+      <div
+        style={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "space-around",
+          flexWrap: "wrap",
+        }}
+      >
         {business?.events?.map((event) => {
           return (
             <Card
-              style={{ width: "18rem", borderRadius: 100, minHeight: 320 }}
+              style={{
+                width: "20rem",
+                borderRadius: 10,
+                boxShadow: "initial",
+                minHeight: 710,
+                background: "#feb600",
+                padding: "10px",
+              }}
               className="text-center"
               key={event.id}
             >
               <Card.Img
                 variant="top"
                 src={event.imageUrl}
-                style={{ borderRadius: 100, minHeight: 320, maxHeight: 480 }}
+                style={{ borderRadius: "10px", minHeight: 320, maxHeight: 480 }}
               />
               <Card.Body>
                 <Card.Title>{event.title}</Card.Title>
@@ -93,7 +134,7 @@ export default function MyProfile() {
                 {token && !user.isBusiness && (
                   <Button
                     variant="secondary"
-                    style={{ borderRadius: 100 }}
+                    style={{ borderRadius: "10px" }}
                     onClick={() => dispatch(setAttend())}
                   >
                     Subscribe
@@ -104,22 +145,49 @@ export default function MyProfile() {
                 {token && (
                   <Button
                     variant="danger"
-                    style={{ borderRadius: 100 }}
+                    style={{
+                      borderRadius: "100%",
+                      width: "50px",
+                      fontSize: "25px",
+                    }}
                     onClick={() => dispatch(eventDelete(event.id))}
                   >
-                    Delete Event
+                    x
                   </Button>
                 )}
               </Card.Body>
             </Card>
           );
         })}
+        <hr
+          style={{
+            color: "#fff",
+            height: "2px",
+            marginTop: "35px",
+            width: "100%",
+          }}
+        />
       </div>
+      {business?.beers?.length ? (
+        <h3
+          style={{
+            padding: "20px 10px",
+            fontSize: "30px",
+            color: "#feb600",
+            fontWeight: "400",
+          }}
+        >
+          Beers
+        </h3>
+      ) : null}
       <div>
-        {business?.beers?.length ? (
-          <h3 style={{ color: "white" }}>Beers</h3>
-        ) : null}
-        <Col className="m-3">
+        <Col
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "space-around",
+          }}
+        >
           {business?.beers?.map((beer) => {
             return (
               <div style={{ marginLeft: 20, marginRight: 20 }} key={beer.id}>
@@ -129,10 +197,15 @@ export default function MyProfile() {
                 user.business.userId === user.id ? (
                   <Button
                     variant="danger"
-                    style={{ borderRadius: 100, marginLeft: 88, marginTop: 5 }}
+                    style={{
+                      borderRadius: "100%",
+                      position: "relative",
+                      top: "-55px",
+                      right: "-50px",
+                    }}
                     onClick={() => dispatch(beerDelete(beer.id))}
                   >
-                    Delete Beer
+                    x
                   </Button>
                 ) : null}
               </div>

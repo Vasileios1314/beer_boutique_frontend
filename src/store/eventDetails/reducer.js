@@ -1,4 +1,18 @@
+import { useBootstrapBreakpoints } from "react-bootstrap/esm/ThemeProvider";
+
 const initialState = [];
+
+/*
+const initialState = {
+    id: null,
+    title: "",
+    description: "",
+    imageUrl: "",
+    userId: null,
+    events: [],
+    beers: [],
+}
+*/
 
 export default function eventDetailsReducer(state = initialState, action) {
   switch (action.type) {
@@ -6,12 +20,13 @@ export default function eventDetailsReducer(state = initialState, action) {
       return { ...state, ...action.payload };
     case "SET_BUSINESS":
       return { ...state, ...action.payload };
+    case "SET_ALLBUSINESS":
+      return { ...state, ...action.payload };
     case "POST_BEER":
       return { ...state, ...action.payload };
     case "POST_EVENT":
       return { ...state, ...action.payload };
     case "POST_COMMENT":
-      // map over beers, for the specific beer - add one comment
       const { beerId, comment } = action.payload;
       const updatedBeers = state.beers.map((beer) => {
         if (beer.id === beerId)
@@ -22,17 +37,27 @@ export default function eventDetailsReducer(state = initialState, action) {
 
         return beer;
       });
-      console.log("updated beers", updatedBeers);
+
       return {
         ...state,
         beers: updatedBeers,
       };
-    // case "POST_RATING":
-    //   return { ...state, ...action.payload };
     case "DELETE_EVENT":
       return { ...state, ...action.payload };
     case "LIKES_UPDATED":
-      return { ...state, ...action.payload };
+      return {
+        ...state,
+        beers: state.beers.map((beer) => {
+          if (beer.id === action.payload.beerLikes.id) {
+            return {
+              ...beer,
+              likes: beer.likes + 1,
+            };
+          }
+
+          return beer;
+        }),
+      };
     case "DELETE_BEER":
       return { ...state, ...action.payload };
     default:

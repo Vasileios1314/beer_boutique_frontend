@@ -20,21 +20,33 @@ export default function Event(props) {
     <div>
       <Col className="col" style={{ minHeight: 510 }}>
         <Card
-          style={{ width: "20rem", borderRadius: 100 }}
+          style={{
+            width: "20rem",
+            borderRadius: "10px",
+            padding: "10px",
+            background: "#feb600",
+          }}
           className="text-center"
         >
           <Card.Img
             variant="top"
             src={imageUrl}
-            style={{ borderRadius: 100, minHeight: 320, maxHeight: 480 }}
+            style={{ borderRadius: "10px", minHeight: 320, maxHeight: 480 }}
           />
           <Card.Body>
-            <Card.Title>{title}</Card.Title>
+            <Card.Title style={{ fontSize: "20px", fontWeight: "900" }}>
+              {title}
+            </Card.Title>
             <Card.Text>{description}</Card.Text>
-            <Card.Text>{location}</Card.Text>
+            <Card.Text style={{ textDecoration: "underline" }}>
+              {location}
+            </Card.Text>
             <Card.Text></Card.Text>
             <Link to={`/event/${id}`}>
-              <Button variant="secondary" style={{ borderRadius: 100 }}>
+              <Button
+                variant="secondary"
+                style={{ borderRadius: "10px", height: "50px" }}
+              >
                 Read More
               </Button>
             </Link>

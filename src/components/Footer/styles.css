@@ -1,13 +1,8 @@
 .footerContainer {
-  /* full width */
-  width: 100%;
-  /* Fixed height */
   height: 180px;
   background-color: #212529;
-  /* flex box */
   display: flex;
   justify-content: space-between;
-  position: static;
   bottom: 0;
   color: #8a8fb9;
 }

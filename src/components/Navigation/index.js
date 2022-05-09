@@ -19,16 +19,17 @@ export default function Navigation() {
 
   return (
     <Navbar bg="dark" expand="light" variant="dark">
-      <Navbar.Brand as={NavLink} to="/">
+      <Navbar.Brand style={{ margin: "20px" }} as={NavLink} to="/">
         Beer Boutique
       </Navbar.Brand>
       <Navbar.Toggle
         aria-controls="basic-navbar-nav"
-        style={{ borderRadius: 100 }}
+        style={{ borderRadius: "10px", padding: "10px", marginRight: "20px" }}
       />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav style={{ width: "100%" }} fill>
           <NavbarItem path="/" linkText="Events" />
+          <NavbarItem path="/business" linkText="Business" />
           {token && user.isBusiness && (
             <NavbarItem path={`/my-profile`} linkText="My Profile" />
           )}

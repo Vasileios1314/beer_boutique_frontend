@@ -37,22 +37,30 @@ export default function CustomerProfile() {
       <div key={user.id}>
         <h2
           style={{
-            color: "white",
-            display: "flex",
-            justifyContent: "center",
-            margin: 20,
+            padding: "10px",
+            fontSize: "40px",
+            color: "#feb600",
+            fontWeight: "900",
+            border: "2px solid #feb600",
+            borderRadius: 10,
+            textAlign: "center",
           }}
         >
           My Profile
         </h2>
         <Card
-          style={{ width: "22rem", borderRadius: 100 }}
+          style={{
+            padding: "20px",
+            width: "100%",
+            borderRadius: "10px",
+            background: "#feb600",
+          }}
           className="text-center"
         >
           <Card.Img
             variant="top"
             src={user.imageUrl}
-            style={{ borderRadius: 100, minHeight: 320, maxHeight: 480 }}
+            style={{ borderRadius: 10, minHeight: 320, maxHeight: 480 }}
           />
           <Card.Body>
             <Card.Title>{user.name}</Card.Title>
@@ -60,16 +68,25 @@ export default function CustomerProfile() {
           </Card.Body>
         </Card>
       </div>
+      <hr
+        style={{
+          color: "#fff",
+          height: "2px",
+          marginTop: "35px",
+          width: "100%",
+        }}
+      />
 
       <Col className="m-3">
         <div>
           {events?.length ? (
             <h3
               style={{
-                color: "white",
-                display: "flex",
-                justifyContent: "center",
-                margin: 20,
+                padding: "20px 10px",
+                fontSize: "30px",
+                color: "#feb600",
+                fontWeight: "400",
+                textAlign: "center",
               }}
             >
               Subscribed Events
@@ -94,8 +111,11 @@ export default function CustomerProfile() {
                       <Card
                         style={{
                           width: "20rem",
-                          borderRadius: 100,
+                          borderRadius: 10,
+                          boxShadow: "initial",
                           minHeight: 710,
+                          background: "#feb600",
+                          padding: "10px",
                         }}
                         className="text-center"
                         key={event.id}
@@ -104,7 +124,7 @@ export default function CustomerProfile() {
                           variant="bottom"
                           src={event?.imageUrl}
                           style={{
-                            borderRadius: 100,
+                            borderRadius: 10,
                             minHeight: 320,
                             maxHeight: 480,
                           }}
@@ -126,7 +146,7 @@ export default function CustomerProfile() {
 
                           <Button
                             variant="secondary"
-                            style={{ borderRadius: 100 }}
+                            style={{ borderRadius: 10 }}
                             onClick={() => dispatch(EventUnsubscribe(event.id))}
                           >
                             Unsubscribe

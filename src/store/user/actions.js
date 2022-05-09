@@ -27,7 +27,6 @@ const tokenStillValid = (userWithoutToken) => ({
 export const logOut = () => ({ type: LOG_OUT });
 
 export const signUp = (user, business) => {
-  // console.log("user", user, "business", business);
   return async (dispatch, getState) => {
     dispatch(appLoading());
     try {
@@ -36,14 +35,11 @@ export const signUp = (user, business) => {
         business,
       });
 
-      // console.log("signup response", response.data);
-
       dispatch(loginSuccess(response.data));
       dispatch(showMessageWithTimeout("success", true, "account created"));
       dispatch(appDoneLoading());
     } catch (error) {
       if (error.response) {
-        // console.log(error.response.data.message);
         dispatch(setMessage("danger", true, error.response.data.message));
       } else {
         console.log(error.message);

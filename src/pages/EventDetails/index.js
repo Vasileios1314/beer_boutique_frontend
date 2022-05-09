@@ -34,18 +34,34 @@ export default function EventDetails() {
 
   return (
     <Container className="d-flex flex-column align-items-center">
+      <Card.Text
+        style={{
+          padding: "10px",
+          fontSize: "40px",
+          color: "#feb600",
+          fontWeight: "900",
+          border: "2px solid #feb600",
+          borderRadius: 10,
+        }}
+      >
+        Event Page
+      </Card.Text>
       <div>
         <Card
-          style={{ width: "22rem", borderRadius: 100 }}
+          style={{
+            padding: "20px",
+            width: "100%",
+            borderRadius: "10px",
+            background: "#feb600",
+          }}
           className="text-center"
         >
           <Card.Img
             variant="top"
             src={event?.business?.imageUrl}
             style={{
-              borderRadius: 100,
-              minHeight: 320,
-              maxHeight: 480,
+              height: 350,
+              maxHeight: 180,
             }}
           />
           <Card.Body>
@@ -53,28 +69,43 @@ export default function EventDetails() {
             <Card.Text>{event?.business?.description}</Card.Text>
             <Card.Text></Card.Text>
             <Link to={`/business/${event?.businessId}`}>
-              <Button variant="secondary" style={{ borderRadius: 100 }}>
+              <Button
+                variant="secondary"
+                style={{ borderRadius: "10px", height: "50px" }}
+              >
                 Visit The Business
               </Button>
             </Link>
           </Card.Body>
         </Card>
       </div>
+      <Card.Text
+        style={{
+          padding: "20px 10px",
+          fontSize: "30px",
+          color: "#feb600",
+          fontWeight: "400",
+        }}
+      >
+        Business Event
+      </Card.Text>
       <Col className="m-3">
         <div>
           <Card
             style={{
-              width: "18rem",
-              borderRadius: 100,
+              width: "30rem",
+              borderRadius: 10,
               boxShadow: "initial",
               minHeight: 710,
+              background: "#feb600",
+              padding: "10px",
             }}
             className="text-center"
           >
             <Card.Img
               variant="bottom"
               src={event.imageUrl}
-              style={{ borderRadius: 100, minHeight: 320, maxHeight: 480 }}
+              style={{ borderRadius: 10, minHeight: 320, maxHeight: 480 }}
             />
             <Card.Body>
               <Card.Title>{event.title}</Card.Title>
@@ -92,7 +123,7 @@ export default function EventDetails() {
               {token && !user.isBusiness && (
                 <Button
                   variant="secondary"
-                  style={{ borderRadius: 100 }}
+                  style={{ borderRadius: "10px", height: "50px" }}
                   onClick={() => dispatch(setAttend())}
                 >
                   Subscribe

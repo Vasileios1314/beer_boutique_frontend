@@ -4,14 +4,19 @@ import { showMessageWithTimeout } from "../appState/actions";
 import { getUserWithStoredToken } from "../user/actions";
 import { selectUser } from "../user/selectors";
 
-const setEventDetails = (event) => ({
+export const setEventDetails = (event) => ({
   type: "EVENT_DETAILS",
   payload: event,
 });
 
-const setBusiness = (business) => ({
+export const setBusiness = (business) => ({
   type: "SET_BUSINESS",
   payload: business,
+});
+
+export const setAllBusiness = (allBusiness) => ({
+  type: "SET_ALLBUSINESS",
+  payload: allBusiness,
 });
 
 export const postBeer = (beer) => ({
@@ -64,6 +69,17 @@ export const fetchBusinessById = (id) => {
     try {
       const response = await axios.get(`${apiUrl}/business/${id}`);
       dispatch(setBusiness(response.data));
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+};
+
+export const fetchAllBusiness = () => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await axios.get(`${apiUrl}/business`);
+      dispatch(setAllBusiness([response.data]));
     } catch (e) {
       console.log(e.message);
     }
@@ -226,7 +242,6 @@ export const likesUpdated = (likes, id) => {
     try {
       const { token, id: ID } = selectUser(getState());
 
-      console.log("likes", likes, id);
       const response = await axios.patch(
         `${apiUrl}/business/beer/${id}`,
         {

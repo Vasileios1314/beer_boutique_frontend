@@ -21,16 +21,7 @@ export default function PostEvent() {
 
   function submitForm(event) {
     event.preventDefault();
-    console.log(
-      "event",
-      title,
-      imageUrl,
-      description,
-      capacity,
-      end,
-      start,
-      location
-    );
+
     dispatch(
       eventPost(title, imageUrl, description, capacity, end, start, location)
     );
