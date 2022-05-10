@@ -21,9 +21,9 @@ I know that from experience and since now i have the tools i took the liberty to
 <code><img height="20" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/react/react.png"></code>
 <code><img height="20" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/nodejs/nodejs.png"></code>
 <code><img height="20" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/git/git.png"></code>
-<img height='20' title='postgreSQL' src='https://user-images.githubusercontent.com/31222514/155521312-96e008ba-1d5e-409f-aaec-ca229ca275c6.jpeg'>
-<img height='20' title= 'CSS3' src='https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/css/css.png'>
-<img height='20'  src='https://brandlogos.net/wp-content/uploads/2021/09/bootstrap-logo.png'>
+<code><img height='20' title='postgreSQL' src='https://user-images.githubusercontent.com/31222514/155521312-96e008ba-1d5e-409f-aaec-ca229ca275c6.jpeg'></code>
+<code><img height='20' title= 'CSS3' src='https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/css/css.png'></code>
+<code><img height='20'  src='https://brandlogos.net/wp-content/uploads/2021/09/bootstrap-logo.png'></code>
 
 ---
 
